@@ -39,6 +39,7 @@ const count = document.querySelector(".cart-count")
        trash[i].addEventListener('click', function(){
         card[i].remove();
          TotalPrice();
+         count.innerHTML--;
     })
 }
    for (const elt of heart){
