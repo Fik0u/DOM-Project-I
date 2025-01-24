@@ -1,5 +1,6 @@
 // test de liaison
 // alert("Hello World");
+
 // Déclaration des cibles:
 const plus = Array.from(document.getElementsByClassName("fa-plus-circle"))
 // console.log(plus);
@@ -13,19 +14,16 @@ const card = Array.from(document.querySelectorAll(".card"))
 // console.log(card);
 const heart = Array.from(document.getElementsByClassName("fa-heart"))
 // console.log(heart);
-// const price = Array.from(document.getElementsByClassName("unit-price"));
-// console.log(price);
-// console.log(quantity);
-// var cartTotal = document.querySelector(".total")
-// console.log(cartTotal);
 const count = document.querySelector(".cart-count")
 // console.log(count);
+
 // ***************************************************************************************
 // Définition des fonctions (plus,minus,trash,heart):
    for (const elt of plus){
         elt.addEventListener('click', function(){
             elt.nextElementSibling.innerHTML++;
             TotalPrice()
+            count.innerHTML++;
     })
 }
    for (const elt of minus){
@@ -33,12 +31,15 @@ const count = document.querySelector(".cart-count")
         if(elt.previousElementSibling.innerHTML>1)
            elt.previousElementSibling.innerHTML--;
            TotalPrice()
+           if(count.innerHTML>3)
+           count.innerHTML--;
     })
 }
    for (const i in trash){
        trash[i].addEventListener('click', function(){
         card[i].remove();
          TotalPrice();
+         if(count.innerHTML>0)
          count.innerHTML--;
     })
 }
@@ -50,6 +51,7 @@ const count = document.querySelector(".cart-count")
          else elt.style.color = 'red';
       })
 }
+
 // **********************************************************************************
 // Définition de la fonction qui calcule le prix total:
  function TotalPrice(){
@@ -60,7 +62,7 @@ const count = document.querySelector(".cart-count")
      total += price[i].innerHTML * quantity[i].innerHTML;
 }
 document.querySelector(".total").innerHTML = total
-// cartTotal.innerHTML = total
+
 // console.log(total);
 }
 // TotalPrice()
